@@ -1,0 +1,28 @@
+@import "../../styles/variables";
+
+.button {
+  padding: 0.75rem 2rem;
+  background: $btn-primary;
+  color: $btn-primary-text;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  margin: 2px;
+  &:hover {
+    background: $btn-primary-hover;
+    cursor: pointer;
+  }
+}
+
+.primary {
+  padding: 0.75rem 2rem;
+  color: $btn-primary;
+  background: $btn-primary-text;
+  border: 2px solid $btn-primary;
+  font-weight: bold;
+  border-radius: 4px;
+  &:hover {
+    color: $btn-secondary-hover;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 8rem;
+  align-items: center;
+  border-bottom: 1px solid rgb(206, 206, 206);
+}

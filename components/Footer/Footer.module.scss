@@ -1,0 +1,15 @@
+.container {
+  // flex-shrink: 0;
+  width: 100%;
+  border-top: 2px solid rgb(219, 219, 219);
+  font-size: 0.75rem;
+  font-weight: 300;
+  & > div {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
