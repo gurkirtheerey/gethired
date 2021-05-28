@@ -7,9 +7,7 @@ export default function Home() {
   return (
     <div>
       <Navigation />
-      <div className={styles.main}>
-        <Questionaire />
-      </div>
+      <Questionaire />
       <Footer />
     </div>
   );

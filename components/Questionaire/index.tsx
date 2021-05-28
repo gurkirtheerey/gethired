@@ -11,9 +11,15 @@ const Questionaire = () => {
   const { user, setUser } = useUserValue();
   const [text, setText] = useState("");
   const router = useRouter();
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (user && !user.isNew && user.experience && user.repositories) {
+    if (
+      user &&
+      !user.isAdmin &&
+      user.repositories &&
+      user.repositories.length
+    ) {
       router.push("/about");
     }
   }, [user]);
@@ -21,11 +27,13 @@ const Questionaire = () => {
   const setRole = async (bool) => {
     const response = await setUserRole(user.id, bool);
     setUser(response);
+    setCount((prevCount) => prevCount + 1);
   };
 
   const setExperience = async (experience) => {
     const response = await setUserExperience(user.id, experience);
     setUser(response);
+    setCount((prevCount) => prevCount + 1);
   };
 
   const setRepositories = async () => {
@@ -35,6 +43,7 @@ const Questionaire = () => {
         text,
       });
       setUser(response.data);
+      setCount((prevCount) => prevCount + 1);
     } catch (e) {
       console.log(e);
     }
@@ -43,7 +52,7 @@ const Questionaire = () => {
   return (
     <div className={styles.container}>
       <h4>Answer some questions to receive the most out of Get Hired!</h4>
-      {user && user.isNew && (
+      {user && count === 0 && (
         <div className={styles.form}>
           <div>
             <span>Are you a Developer looking for a job?</span>
@@ -59,7 +68,7 @@ const Questionaire = () => {
           </div>
         </div>
       )}
-      {user && !user.isNew && !user.isAdmin && !user.experience && (
+      {user && !user.isAdmin && count === 1 && (
         <div className={styles.form}>
           <h2>Set Experience Level</h2>
           <div>
@@ -75,8 +84,8 @@ const Questionaire = () => {
           </div>
         </div>
       )}
-      {user && !user.isNew && !user.repositories && (
-        <>
+      {user && !user.isAdmin && count === 2 && (
+        <div className={styles.form}>
           <h2>Bring in your GitHub repos!</h2>
           <Input
             onChange={(e) => setText(e.target.value)}
@@ -84,7 +93,7 @@ const Questionaire = () => {
             placeholder="Enter github username"
           />
           <Button onClick={() => setRepositories()}>Add Repositories</Button>
-        </>
+        </div>
       )}
     </div>
   );

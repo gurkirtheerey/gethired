@@ -31,7 +31,9 @@ const Navigation = () => {
         {!session ? (
           <Button onClick={() => signIn()}>Sign In</Button>
         ) : (
-          <Button onClick={() => signOut()}>Sign Out</Button>
+          <Button primary onClick={() => signOut()}>
+            Sign Out
+          </Button>
         )}
       </div>
     </nav>
